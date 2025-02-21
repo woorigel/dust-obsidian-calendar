@@ -117,11 +117,14 @@ export default class DustCalendarPlugin extends Plugin {
         }
         else {
             leaf = workspace.getRightLeaf(false);
+            // @ts-ignore
             await leaf.setViewState({type: VIEW_TYPE_CALENDAR, active: true});
         }
 
         // 显示视图
-        workspace.revealLeaf(leaf);
+        if (leaf instanceof WorkspaceLeaf) {
+            workspace.revealLeaf(leaf);
+        }
     }
 }
 
